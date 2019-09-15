@@ -2,6 +2,7 @@
 * [Introduction](#introduction)
 * [Configuration](#configuration)
 	* [Webhook](#webhook)
+  * [Mail](#mail)
 * [Recurring Billing](#recurring-billing)
 * [One-Time Charge](#one-time-charge)
 * [Configuring Billing Plans](#configuring-billing-plans)
@@ -18,16 +19,27 @@
 Larakits supports both `Recurring Billing` and `One-Time Charge`. Currently, Larakits uses [FastSpring](https://fastspring.com/) as payment provider. If you do not have FastSpring account, create your account before moving to configuration section.
 
 ## [Configuration](#configuration)
-Once you created your FastSpring account, you may create `API Credentials` under **`Integrations > API Credentials`** from your FastSpring dashboard. After that, open `.env` file of your application and populate the `FASTSPRING_STORE_ID`, `FASTSPRING_USERNAME`, `FASTSPRING_PASSWORD` environment variable values. If your FastSpring store contains sub directory, you can populate `FASTSPRING_SUB_DIRECTORY_STORE_ID` environment variable value.
+Once you created your FastSpring account, you can create `API Credentials` under **`Integrations > API Credentials`** from your FastSpring dashboard. After that, open `.env` file of your application and populate the `FASTSPRING_USERNAME`, `FASTSPRING_PASSWORD`, `FASTSPRING_STORE_ID`, `FASTSPRING_SUB_DIRECTORY_STORE_ID`  environment variable values.
 
-> You may get your `FASTSPRING_STORE_ID` from **Storefronts** > **Popup Storefronts** > **PLACE ON YOUR WEBSITE**. When you click the **PLACE ON YOUR WEBSITE**, a modal will popup. You will see a line similar to `data-storefront="FASTSPRING_STORE_ID.onfastspring.com/popup-FASTSPING_SUB_DIRECTORY_STORE_ID"` where `FASTSPRING_STORE_ID` will be your store ID and `FASTSPRING_SUB_DIRECTORY_STORE_ID` your sub directory ID.
+> You will get your `FASTSPRING_STORE_ID` and `FASTSPRING_SUB_DIRECTORY_STORE_ID` from **Storefronts** > **Popup Storefronts** > **PLACE ON YOUR WEBSITE**. When you click the **PLACE ON YOUR WEBSITE**, a modal will popup. You will see a line similar to `data-storefront="FASTSPRING_STORE_ID.onfastspring.com/popup-FASTSPING_SUB_DIRECTORY_STORE_ID"` where `FASTSPRING_STORE_ID` will be your store ID and `FASTSPRING_SUB_DIRECTORY_STORE_ID` your sub directory ID.
 
 ### [Webhook](#webhook)
 You must configure your webhook on FastSpring. The webhook will be `/webhook/fastspring` URI. 
 
-To configure your webhook, go to **`Integrations > Webhooks > Add New Webhook`** from your FastSpring dashboard.
+To configure your webhook, go to **`Integrations > Webhooks > Add New Webhook`** from your FastSpring dashboard. Here's the list of event types you need to configure:
+
+* order.completed
+* subscription.activated
+* subscription.deactivated
+* subscription.canceled
+* subscription.updated
+* subscription.charge.completed
+* subscription.charge.failed
 
 > Make sure you write a secret key in `HMAC SHA256 Secret` when you provide the webhook URL. Also populate the same secret key for `FASTSPRING_HMAC_SECRET` environment variable values in `.env` file of your application.  
+
+### [Mail](#mail)
+Larakits sends email to user when registration is complete or new invoice is created. So you have to configure your mail setting from `.env`.
 
 ## [Recurring Billing](#recurring-billing)
 By default, Larakits configured recurring billing when you created new project via Larakits installer. You will get the configuration in the `booted` method of  `App\Providers\LarakitsServiceProvider` class. 

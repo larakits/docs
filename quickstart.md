@@ -31,13 +31,13 @@ Larakits also includes admin functionality to see what’s going on in your appl
 To register yourself as a developer, you have to include your email address on the `$developers` property in your `App\Providers\LarakitsServiceProvider` class.
 
 ## [Configuring Billing Plans](#configuring-billing-plans)
-Larakits supports both `subscriptions` and `one-time charge`. By default Larakits is configured for subscription based charge. Let’s introduce you with subscriptions based charge first.
+Larakits supports both `recurring billing` and `one-time charge`. By default Larakits is configured for recurring billing. Let’s introduce you with recurring billing first.
 
 In the `booted` method of  `App\Providers\LarakitsServiceProvider`, you will see three plans are defined. One free and two paid plans. You will see both paid plans has a unique ID `larakits-test-1` and `larakits-test-2`. These are dummy IDs and matched with FastSpring [Subscription ID](https://dashboard.fastspring.com/2/product/all_subscriptions.xml). You have to change it with your own subscription ID that you’ll create on your own [FastSpring](https://fastspring.com) account.
 
 For `one-time charge` you have to use `Larakits::useFastSpring()->oneTimeCharge();` instead of  `Larakits::useFastSpring()->onTrialDays(7);`. That’s it. Your application is ready for one-time charge. One thing keep on mind that you have to use FastSpring [Product ID](https://dashboard.fastspring.com/2/product/all.xml) instead of [Subscription ID](https://dashboard.fastspring.com/2/product/all_subscriptions.xml).
 
-> Don’t forget to configure `FastSpring API token` and `Webhook`. Please follow [the billings guide](/docs/{version}/billing#webhook). 
+> Don’t forget to configure `FastSpring API token`, `Webhook`, and `Mail`. Please follow [the billing guide](/docs/{version}/billing#configuration). 
 
 ## [Building Your Application](#building-your-application)
 It’s time to build your own application. When you create your project via Larakits installer, it creates a `/home` route. Basically it’ll show a blade file that is located on `/resources/views/home.blade.php`. You are free to add any routes and views. 
