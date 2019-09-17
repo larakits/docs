@@ -2,7 +2,7 @@
 * [Introduction](#introduction)
 * [Configuration](#configuration)
 	* [Webhook](#webhook)
-  * [Mail](#mail)
+	* [Mail](#mail)
 * [Recurring Billing](#recurring-billing)
 * [One-Time Charge](#one-time-charge)
 * [Configuring Billing Plans](#configuring-billing-plans)
@@ -19,17 +19,16 @@
 Larakits supports both `Recurring Billing` and `One-Time Charge`. Currently, Larakits uses [FastSpring](https://fastspring.com/) as payment provider. If you do not have FastSpring account, create your account before moving to configuration section.
 
 ## [Configuration](#configuration)
-Once you created your FastSpring account, you can create `API Credentials` under **`Integrations > API Credentials`** from your FastSpring dashboard. After that, open `.env` file of your application and populate the `FASTSPRING_USERNAME`, `FASTSPRING_PASSWORD`, `FASTSPRING_STORE_ID`, `FASTSPRING_SUB_DIRECTORY_STORE_ID`  environment variable values.
+Once you created your FastSpring account, you can create `API Credentials` under `Integrations > API Credentials` from your FastSpring dashboard. After that, open `.env` file of your application and populate the `FASTSPRING_USERNAME`, `FASTSPRING_PASSWORD`, `FASTSPRING_STORE_ID`, `FASTSPRING_SUB_DIRECTORY_STORE_ID`  environment variable values.
 
-> You will get your `FASTSPRING_STORE_ID` and `FASTSPRING_SUB_DIRECTORY_STORE_ID` from **Storefronts** > **Popup Storefronts** > **PLACE ON YOUR WEBSITE**. When you click the **PLACE ON YOUR WEBSITE**, a modal will popup. 
+> You will get your `FASTSPRING_STORE_ID` and `FASTSPRING_SUB_DIRECTORY_STORE_ID` from **Storefronts** > **Popup Storefronts** > **PLACE ON YOUR WEBSITE**. When you click the **PLACE ON YOUR WEBSITE**, a modal will popup.
 >
-> 
-> You will see a line similar to `data-storefront="FASTSPRING_STORE_ID.onfastspring.com/popup-FASTSPING_SUB_DIRECTORY_STORE_ID"` where `FASTSPRING_STORE_ID` will be your store ID and `FASTSPRING_SUB_DIRECTORY_STORE_ID` your sub directory ID.
+> You will see a line similar to `data-storefront="FASTSPRING_STORE_ID.onfastspring.com/popup-FASTSPING_SUB_DIRECTORY_STORE_ID"` where `FASTSPRING_STORE_ID` will be your store ID and `FASTSPRING_SUB_DIRECTORY_STORE_ID` your sub directory ID.  
 
 ### [Webhook](#webhook)
-You must configure your webhook on FastSpring. The webhook will be `/webhook/fastspring` URI. 
+You must configure your webhook on FastSpring. The webhook will be `/webhook/fastspring` URI.
 
-To configure your webhook, go to **`Integrations > Webhooks > Add New Webhook`** from your FastSpring dashboard. Here's the list of event types you need to configure:
+To configure your webhook, go to `Integrations > Webhooks > Add New Webhook` from your FastSpring dashboard. Here's the list of event types you need to configure:
 
 * order.completed
 * subscription.activated
@@ -39,13 +38,13 @@ To configure your webhook, go to **`Integrations > Webhooks > Add New Webhook`**
 * subscription.charge.completed
 * subscription.charge.failed
 
-> Make sure you write a secret key in `HMAC SHA256 Secret` when you provide the webhook URL. Also populate the same secret key for `FASTSPRING_HMAC_SECRET` environment variable values in `.env` file of your application.  
+> Make sure you write a secret key in the form field of `HMAC SHA256 Secret` when you provide the webhook URL. Also populate the same secret key for `FASTSPRING_HMAC_SECRET` environment variable value in `.env` file of your application.  
 
 ### [Mail](#mail)
 Larakits sends email to user when registration is complete, trial period is over, and new invoice is created. So you have to configure your mail setting from `.env`.
 
 ## [Recurring Billing](#recurring-billing)
-By default, Larakits configured recurring billing when you created new project via Larakits installer. You will get the configuration in the `booted` method of  `App\Providers\LarakitsServiceProvider` class. 
+By default, Larakits configured recurring billing when you created new project via Larakits installer. You will get the configuration in the `booted` method of  `App\Providers\LarakitsServiceProvider` class.
 
 Larakits recurring billing is configured for `7 days` trial. You may change the trial days as your wish by calling `onTrialDays` method of `Larakits` instance:
 
@@ -78,7 +77,7 @@ In the `booted` method of  `App\Providers\LarakitsServiceProvider`, you will see
 > One thing keep in mind that for the `one-time charge` you have to use FastSpring [Product ID](https://dashboard.fastspring.com/2/product/all.xml) instead of [Subscription ID](https://dashboard.fastspring.com/2/product/all_subscriptions.xml)  
 
 ### [Defining Monthly Plan](#defining-monthly-plan)
-The `Plan` method of `Larakits` instance accepts two arguments. The first argument is the name of your plan that will be displayed on pricing table on subscription or purchase page. The second argument is the ID of your FastSpring subscription or product ID: 
+The `Plan` method of `Larakits` instance accepts two arguments. The first argument is the name of your plan that will be displayed on pricing table on subscription or purchase page. The second argument is the ID of your FastSpring subscription or product ID:
 
 ```
 Larakits::plan('Pro', 'monthly-pro')
@@ -93,7 +92,7 @@ Larakits::plan('Pro', 'monthly-pro')
 
 All the features name defined by you will be displayed on the subscription or purchase page under the plan name. Obviously you are free to include as many plans you want.
 
-For the **one-time charge** you may pass sub-plan name for your plan. By calling `for` method of plan instance:
+For the `one-time charge` you may pass sub-plan name for your plan. By calling `for` method of plan instance:
 
 ```
 Larakits::plan('Personal', 'personal-license')
@@ -110,7 +109,7 @@ Larakits::plan('Personal', 'personal-license')
 The sub-plan name will be shown as `$99/Single Site`.
 
 ### [Defining Yearly Plan](#defining-yearly-plan)
-You may define yearly plan by simply calling `yearly` method:
+You may define your yearly plan by simply calling `yearly` method:
 
 ```
 Larakits::plan('Pro', 'yearly-pro')
@@ -139,7 +138,7 @@ Larakits::plan('Pro', 'monthly-pro')
             ]);
 ```
 
-> Before applying coupon, make sure you create coupon from **Coupons** > **Create Coupon** from your FastSpring Dashboard.  
+> Before applying coupon, make sure you create coupon from `Coupons > Create Coupon` from your FastSpring Dashboard.  
 
 ## [Middleware](#middleware)
 Larakits registeres `subscribed` and `purchased` middleware in the `app/Http/Kernel.php` file while creating new project.
@@ -163,7 +162,7 @@ Route::middleware('subscribed:monthly-pro')->get('/projects', function() {
 });
 ```
 
-###  [Purchased Middleware](#purchased-middleware)
+### [Purchased Middleware](#purchased-middleware)
 The `purchased` middleware is used for preventing access to a route if the user is not already purchased your product. By default Larakits will redirect them to the `purchase` page:
 
 ```
@@ -187,7 +186,7 @@ You may change default currency by calling `useCurrency` method of `Larakits\Lar
 Larakits::useCurrency("£");
 ```
 
-Optionally, you may override FastSpring currency by **Storefronts** > **Popup Storefronts** > **More** > **Languages and Currencies** > **Override Store Currencies** from your FastSpring dashboard. 
+Optionally, you may override FastSpring currency by **Storefronts** > **Popup Storefronts** > **More** > **Languages and Currencies** > **Override Store Currencies** from your FastSpring dashboard.
 
 ## [Events](#events)
 Larakits dispatches many events when processing billings. All the events listed below are also registered in the `$listen` array of the `App\Providers\EventServiceProvider` class:

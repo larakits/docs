@@ -106,7 +106,7 @@ You may include your custom config’s properties in the array inside `mergeConf
 protected function mergeConfig() : array
 {
 	return [
-		'app_name'=>config('app.name')
+		'app_name' => config('app.name')
 	];
 }
 ```

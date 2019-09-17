@@ -12,7 +12,7 @@ To create notification you may use `Larakits\Notifications\Notification` class:
 $user->notify(new \Larakits\Notifications\Notification(
     "someone mentioned you",
     "<strong>@$user->name</strong> How are you?",
-    "fas fa-at",
+    "fas fa-at", // fontawesome icon
     "/link/to/thread"
 ));
 ```

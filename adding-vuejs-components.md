@@ -29,7 +29,7 @@ const app = new Vue({
 });
 ```
 
-> The code snippet is already exist on your `resources/js/app.js` file. You may uncomment it instead of copy/past the code snippet.  
+> The code snippet is already exist on your `resources/js/app.js` file. You may uncomment it instead of copy/paste the code snippet.  
 
 ## [Creating Component](#creating-component)
 You can create a basic VueJS component that will show `Hello World`. Before doing that you have to create the component file. 

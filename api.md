@@ -55,7 +55,7 @@ To register scopes, you may use `Larakits::tokensCan` method in the `booted` met
 ```
 Larakits::tokensCan([
    'create-user' => 'Create User',
-   'delete-user => 'Delete User'
+   'delete-user' => 'Delete User'
 ]);
 ```
 
