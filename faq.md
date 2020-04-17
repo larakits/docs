@@ -13,7 +13,7 @@
 
 
 ## [What Laravel version do you support?](#what-laravel-version-do-you-support)
-We keep the Larakits up to date. Currently it supports Laravel 6.0+.
+We keep the Larakits up to date. Currently it supports Laravel 7.0+.
 
 ## [Which payment providers does Larakits support?](#which-payment-providers-does-larakits-support)
 Larakits supports FastSpring.
