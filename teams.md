@@ -70,6 +70,7 @@ The `currentTeam` property will help you to show current team related data in yo
 By default Larakits only offer `owner` and `member` two roles. You may want to define your own roles with default roles.
 
 ### [Define Roles](#)
+To define roles you have to call  `Larakits::useRoles` method in the `booted` method of `App\Providers\LarakitsServiceProvider`.
 
 ```
 Larakits::useRoles([
