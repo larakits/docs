@@ -4,6 +4,7 @@
 * [Accessing The User’s Teams](#accessing-the-user-teams)
 * [Accessing The User’s Current Team](#accessing-the-user-current-team)
 * [Helper Methods](#helper-methods)
+* [Helper Methods](#helper-methods)
 * [Events](#events)
 
 ## [Introduction](#introduction)
