@@ -3,12 +3,12 @@
 * [Refer To Team As](#refer-to-team-as)
 * [Accessing The User’s Teams](#accessing-the-user-teams)
 * [Accessing The User’s Current Team](#accessing-the-user-current-team)
-* [Helper Methods](#helper-methods)
+* [Team Roles](#team-roles)
 * [Helper Methods](#helper-methods)
 * [Events](#events)
 
 ## [Introduction](#introduction)
-Larakits supports team billing that allows your user’s to create and join teams. The team is a great way for sharing same resources among the team member’s. 
+Larakits supports team billing that allows your user’s to create and join teams. The team is a great way for sharing same resources among the team member’s.
 
 To enable team, you have to use `Larakits\CanJoinTeam` trait into your `User` model.
 
@@ -29,7 +29,7 @@ class User extends Authenticatable
 }
 ```
 
-> You may also need to configure your team billing plans. Please consult [the configuration team billing plans](/docs/{version}/billing#configuring-team-billing-plans) documentation.  
+> You may also need to configure your team billing plans. Please consult [the configuration team billing plans]((null)) documentation.  
 
 ## [Refer To Team As](#refer-to-team-as)
 By default, Larakits uses `/teams` URI and `teams` word to refer your team in the whole application. You may change it by simply calling `Larakits::referToTeamAs` method in the `registered` method of `App\Providers\LarakitsServiceProvider`.
@@ -41,7 +41,7 @@ Larakits::referToTeamAs('workspace');
 Now, all of the `/teams` URI will be `/workspaces` and all of the `team` and `teams` words will be `workspace` and `workspaces` for your application.
 
 ## [Accessing The User’s Teams](#accessing-the-user-teams)
-The `Larakits\CanJoinTeam` trait will give you many helpful method to access user’s teams. 
+The `Larakits\CanJoinTeam` trait will give you many helpful method to access user’s teams.
 
 ```
 foreach($user->teams as $team) {
@@ -56,7 +56,7 @@ Larakits::useTeamModel(\App\Models\Team::class)
 ```
 
 ## [Accessing The User’s Current Team](#accessing-the-current-team)
-Larakits allows your user to switch one team to another team from the user profile dropdown menu at the top right of the screen. Every time a user switches team, Larakits will make a record of the current team. 
+Larakits allows your user to switch one team to another team from the user profile dropdown menu at the top right of the screen. Every time a user switches team, Larakits will make a record of the current team.
 
 You can access the current team by call `currentTeam` property of the `App\User` model.
 
@@ -65,6 +65,24 @@ echo $user->currentTeam->name
 ```
 
 The `currentTeam` property will help you to show current team related data in your application.
+
+## [Team Roles](#team-roles)
+By default Larakits only offer `owner` and `member` two roles. You may want to define your own roles with default roles.
+
+### [Define Roles](#)
+
+```
+Larakits::useRoles([
+	'author' => 'Author',
+	'editor' => 'Editor'
+]);
+```
+
+### [Get User’s Role](#)
+
+```
+$user->roleOn($team);
+```
 
 ## [Helper Methods](#helper-methods)
 The helpful methods you will get when you inlcude `Larakits\CanJoinTeam` trait in the `App\User` model:
